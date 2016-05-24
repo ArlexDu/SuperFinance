@@ -1,0 +1,559 @@
+﻿html{
+    overflow-y:hidden;
+}
+body {
+    margin:0px;
+    height:100%;
+}
+/*开场logo*/
+@keyframes change_alpha{
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-webkit-keyframes change_alpha{
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-moz-keyframes change_alpha{
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-o-keyframes change_alpha{
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+#logo{
+    width: 100px;
+    height: 100px;
+    background-image: url("../image/logo.png");
+    background-size: cover;
+    opacity:1;
+    animation:change_alpha 4s linear;
+    -moz-animation:change_alpha 4s linear;
+    -o-animation:change_alpha 4s linear;
+    -webkit-animation:change_alpha 4s linear;
+}
+
+/*中间旋转动画*/
+.circle_background {
+    width: 200px;
+    height: 200px;
+    opacity:0;
+    background-image: url("../image/elipse_bg.png");
+    background-size: cover;
+}
+
+@keyframes inner{
+    from {
+        transform:scale(0.7,0.7);
+        opacity: 0;
+    }
+    to{
+         transform:scale(1.5,1.5);
+        opacity: 1;
+    }
+}
+@-webkit-keyframes inner{
+    from {
+        transform:scale(0.7,0.7);
+        opacity: 0;
+    }
+    to{
+         transform:scale(1.5,1.5);
+        opacity: 1;
+    }
+}
+@-moz-keyframes inner{
+    from {
+        transform:scale(0.7,0.7);
+        opacity: 0;
+    }
+    to{
+         transform:scale(1.5,1.5);
+        opacity: 1;
+    }
+}
+@-o-keyframes inner{
+    from {
+        transform:scale(0.7,0.7);
+        opacity: 0;
+    }
+    to{
+         transform:scale(1.5,1.5);
+        opacity: 1;
+    }
+}
+.inner{
+     width: 200px;
+     height: 200px;
+     opacity:0;
+     background-image: url("../image/inner_bg.png");
+     background-size: cover;
+     animation:inner 1s 3s linear forwards;
+    -moz-animation:inner 1s 3s linear forwards;
+    -webkit-animation:inner 1s 3s linear forwards;
+    -o-animation:inner 1s 3s linear forwards;
+}
+
+@keyframes outter{
+    from {
+        transform:scale(2,2);
+        opacity: 0;
+    }
+    to{
+         transform:scale(5,5);
+        opacity: 0.7;
+    }
+}
+@-webkit-keyframes outter{
+    from {
+        transform:scale(2,2);
+        opacity: 0;
+    }
+    to{
+         transform:scale(5,5);
+        opacity: 0.7;
+    }
+}
+@-moz-keyframes outter{
+    from {
+        transform:scale(1.5,1.5);
+        opacity: 0;
+    }
+    to{
+         transform:scale(6,6);
+        opacity: 0.7;
+    }
+}
+@-o-keyframes outter{
+    from {
+        transform:scale(1.5,1.5);
+        opacity: 0;
+    }
+    to{
+         transform:scale(6,6);
+        opacity: 0.7;
+    }
+}
+
+.outter{
+     width: 200px;
+     height: 200px;
+     opacity:0;
+     background-image: url("../image/elipse_bg.png");
+     background-size: cover;
+     animation:outter 0.7s 3.3s linear forwards;
+    -moz-animation:outter 0.7s 3.3s linear forwards;
+    -webkit-animation:outter 0.7s 3.3s linear forwards;
+    -o-animation:outter 0.7s 3.3s linear forwards;
+}
+/*四大行的图标*/
+@keyframes icon_rotate{
+  from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(-360deg);
+    }
+}
+@-webkit-keyframes icon_rotate{
+    from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(-360deg);
+    }
+}
+@-moz-keyframes icon_rotate{
+   from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(-360deg);
+    }
+}
+@-o-keyframes icon_rotate{
+  from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(-360deg);
+    }
+}
+
+#abc{
+    width:80px;
+    height:80px;
+    opacity:1;
+    background-image: url("../image/abc.png");
+    background-size: cover;
+    display:none;
+    cursor:pointer;
+    animation:icon_rotate 60s 0.9s linear infinite;
+    -moz-animation:icon_rotate 60s 0.9s linear infinite;
+    -webkit-animation:icon_rotate 60s 0.9s linear infinite;
+    -o-animation:icon_rotate 60s 0.9s linear infinite;
+}
+
+#abc:hover{
+    -webkit-transform:scale(1.5,1.5);
+    -moz-transform:scale(1.5,1.5);
+    -o-transform:scale(1.5,1.5);
+    transform:scale(1.5,1.5);
+}
+
+#boc{
+    width:80px;
+    height:80px;
+    opacity:1;
+    background-image: url("../image/boc.png");
+    background-size: cover;
+    display:none;
+    cursor:pointer;
+    animation:icon_rotate 60s 0.3s linear infinite;
+    -moz-animation:icon_rotate 60s 0.3s linear infinite;
+    -webkit-animation:icon_rotate 60s 0.3s linear infinite;
+    -o-animation:icon_rotate 60s 0.3s linear infinite;
+}
+
+#ccb{
+    width:80px;
+    height:80px;
+    opacity:1;
+    background-image: url("../image/ccb.png");
+    background-size: cover;
+    display:none;
+    cursor:pointer;
+    animation:icon_rotate 60s 0.6s linear infinite;
+    -moz-animation:icon_rotate 60s 0.6s linear infinite;
+    -webkit-animation:icon_rotate 60s 0.6s linear infinite;
+    -o-animation:icon_rotate 60s 0.6s linear infinite;
+}
+
+#icbc{
+    width:80px;
+    height:80px;
+    opacity:1;
+    background-image: url("../image/icbc.png");
+    background-size: cover;
+    display:none;
+    cursor:pointer;
+    animation:icon_rotate 60s 0s linear infinite;
+    -moz-animation:icon_rotate 60s 0s linear infinite;
+    -webkit-animation:icon_rotate 60s 0s linear infinite;
+    -o-animation:icon_rotate 60s 0s linear infinite;
+}
+
+/*图标的动画显示*/
+@keyframes bank{
+  from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(360deg);
+    }
+}
+@-webkit-keyframes bank{
+    from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(360deg);
+    }
+}
+@-moz-keyframes bank{
+   from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(360deg);
+    }
+}
+@-o-keyframes bank{
+  from {
+        transform:rotate(0deg);
+    }
+    to{
+       transform:rotate(360deg);
+    }
+}
+#bank{
+    width:700px;
+    height:700px;
+     animation:bank 60s 5.6s linear infinite;
+    -moz-animation:bank 60s 5.6s linear infinite;
+    -webkit-animation:bank 60s 5.6s linear infinite;
+    -o-animation:bank 60s 5.6s linear infinite;
+}
+
+/*银行照片*/
+@keyframes abc{
+    from {
+        top:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-webkit-keyframes abc{
+    from {
+        top:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-moz-keyframes abc{
+    from {
+        top:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-o-keyframes abc{
+    from {
+        top:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+#abc_building{
+     background-image: url("../image/abc_building_before.png");
+     animation:abc 0.7s 4s ease-in-out forwards;
+    -moz-animation:abc 0.7s 4s ease-in-out forwards;
+    -webkit-animation:abc 0.7s 4s ease-in-out forwards;
+    -o-animation:abc 0.7s 4s ease-in-out forwards;
+}
+
+#abc_building:hover{
+    background-image:url("../image/abc_building_after.png");
+}
+
+@keyframes boc{
+    from {
+        bottom:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-webkit-keyframes boc{
+    from {
+        bottom:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-moz-keyframes boc{
+    from {
+        bottom:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+@-o-keyframes boc{
+    from {
+        bottom:-200px;
+        left:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        left:180px;
+        opacity:1;
+    }
+}
+
+#boc_building{
+     background-image: url("../image/boc_building_before.png");
+     animation:boc 0.7s 4s ease-in-out forwards;
+    -moz-animation:boc 0.7s 4s ease-in-out forwards;
+    -webkit-animation:boc 0.7s 4s ease-in-out forwards;
+    -o-animation:boc 0.7s 4s ease-in-out forwards;
+}
+
+#boc_building:hover{
+    background-image:url("../image/boc_building_after.png");
+}
+
+@keyframes ccb{
+    from {
+        top:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-webkit-keyframes ccb{
+    from {
+        top:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-moz-keyframes ccb{
+    from {
+        top:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-o-keyframes ccb{
+    from {
+        top:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        top:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+
+#ccb_building {
+     background-image: url("../image/ccb_building_before.png");
+     animation:ccb 0.7s 4s ease-in-out forwards;
+    -moz-animation:ccb 0.7s 4s ease-in-out forwards;
+    -webkit-animation:ccb 0.7s 4s ease-in-out forwards;
+    -o-animation:ccb 0.7s 4s ease-in-out forwards;
+}
+
+#ccb_building:hover{
+    background-image:url("../image/ccb_building_after.png");
+}
+@keyframes icbc{
+    from {
+        bottom:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-webkit-keyframes icbc{
+    from {
+        bottom:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-moz-keyframes icbc{
+    from {
+        bottom:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+@-o-keyframes icbc{
+    from {
+        bottom:-200px;
+        right:-200px;
+        opacity:0;
+    }
+    to{
+        bottom:100px;
+        right:180px;
+        opacity:1;
+    }
+}
+
+#icbc_building{
+     background-image: url("../image/icbc_building_before.png");
+     animation:icbc 0.7s 4s ease-in-out forwards;
+    -moz-animation:icbc 0.7s 4s ease-in-out forwards;
+    -webkit-animation:icbc 0.7s 4s ease-in-out forwards;
+    -o-animation:icbc 0.7s 4s ease-in-out forwards;
+}
+
+#icbc_building:hover{
+    background-image: url("../image/icbc_building_after.png");
+}
+
+.banks{
+     width: 200px;
+     height: 200px;
+     opacity:0;
+     position:absolute;
+     background-size: contain;
+     background-repeat:no-repeat;
+     cursor:pointer;
+}
+
+
+
