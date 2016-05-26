@@ -1,36 +1,59 @@
 ﻿var rotation ;
 var move;//点击菜单下降的距离
 var time = 0.6;//设置动画移动时间
-var down;//第一次点击要下落
+var detial = false;//第一次点击要下落按钮区域
 var radius_change = 5;//每一帧半径的变化
 var icon_radius = 40; //每一帧图标大小的变化
-var icon_stop = false;
-//银行图标目标移动角度
-var stop = false;
+var icon_stop = false;//过渡按钮组旋转动画停止
+var banks = ["#abc_bank", "#boc_bank", "#ccb_bank", "#icbc_bank"];
 $(function () {
     $(".icons").click(function () {
-        changestatus();
+        if(detial){
+
+        } else {
+            changestatus();
+        }
     });
     $("#logo").click(function () {
-        window.location = "http://localhost:62754/";
+        if (detial) {
+            window.location = "http://localhost:62754/";
+            detial = false;
+        }
     })
+    $("#abc_bank").click(function () {
+        if (!detial) {
+            getBankDetialInfo("#abc_bank");
+        }
+    });
+
+    $("#boc_bank").click(function () {
+        if (!detial) {
+            getBankDetialInfo("#boc_bank");
+        }
+    });
+
+    $("#ccb_bank").click(function () {
+        if (!detial) {
+            getBankDetialInfo("#ccb_bank");
+        }
+    });
+
+    $("#icbc_bank").click(function () {
+        if (!detial) {
+            getBankDetialInfo("#icbc_bank");
+        }
+    });
 });
 
-function getRotation(id) {
-    var matrix = $(id).css("transform");
-    var sin = matrix.split(",")[1];
-    var radian = Math.asin(sin);
-    return radians2degree(radian);
-}
 
 function changestatus() {
     //按钮区域平移下降
-    stop = false;
+    detial = true;
     changey = (windows_height - 100 - ($("#inner").css("top").split("px")[0]) * 1.0) / (time / 0.03);
     changeypostion();
     changeicons();
 }
-
+//改变按钮组的位置
 function changeypostion() {
     //目标减到环形圆球的半径是80 之前是440所以每一帧变化是16 半径每帧变化是8
     var newwidth = ($("#bank").css("width").split("px")[0]) * 1.0 - radius_change*2;
@@ -75,7 +98,7 @@ function changeypostion() {
         setTimeout(changeypostion, 30);
     }
 }
-
+//改变银行图标的大小
 function iconSize(id) {
     var newwidth = ($(id).css("width").split("px")[0]) * 1.0 - 2;
     $(id).css({
@@ -83,7 +106,7 @@ function iconSize(id) {
         "height": newwidth + "px"
     });
 }
-
+//改变按钮组内部银行图标的圆周运动
 function changeicons() {
     // radius is 220
   
@@ -104,7 +127,6 @@ function changeicons() {
     //console.log("change ccb is " + abc_step);
     changeIcon(0, angles[3], -90, ccb_step, "ccb");
 }
-
 //改变银行图标的位置
 function changeIcon(change,target,origin,step,name) {
     change = change + step;
@@ -112,7 +134,7 @@ function changeIcon(change,target,origin,step,name) {
         var currentx = radius + Math.cos(degree2radians(target-origin)) * Math.cos(degree2radians(origin)) * radius - Math.sin(degree2radians(target-origin)) * Math.sin(degree2radians(origin)) * radius - icon_radius;
         var currenty = radius + Math.sin(degree2radians(origin)) * Math.cos(degree2radians(target - origin)) * radius + Math.cos(degree2radians(origin)) * Math.sin(degree2radians(target - origin)) * radius - icon_radius;
         var execute = name + ".css({\"position\": \"absolute\", \"left\": " + currentx + ", \"top\": " + currenty + " });";
-        console.log(name + "stop radius is " + radius + " icon_radius is " + icon_radius);
+   //     console.log(name + "stop radius is " + radius + " icon_radius is " + icon_radius);
         icon_stop = true;
         eval(execute);
     } else {
@@ -125,6 +147,7 @@ function changeIcon(change,target,origin,step,name) {
        setTimeout("changeIcon("+change+","+target+","+origin+","+step+",\""+name+"\")", 30);
     }
 }
+//极端银行图标的目标角度
 function targetangle() {
     var abc_angle = parseInt(radians2degree(Math.atan(-40 / radius))) + 360;
  //   console.log("angle is " + parseInt(radians2degree(Math.atan(-40 / radius))));
@@ -132,4 +155,84 @@ function targetangle() {
     var boc_angle = 225;
     var ccb_angle = 180 - parseInt(radians2degree(Math.atan(-40 / radius)));
     return [abc_angle, icbc_angle,boc_angle,ccb_angle];
+}
+
+//获取银行的介绍信息
+function getBankDetialInfo(id) {
+    var bank_height = $(id).css("height").split("px")[0] * 1.0;
+    var bank_width = $(id).css("width").split("px")[0] * 1.0;
+    var bankx = $(id).css("left").split("px")[0] * 1.0;
+    var banky = $(id).css("top").split("px")[0] * 1.0;
+    var targety = (windows_height - bank_height * 1.5) / 2;
+    var targetx;
+    if (bankx < windows_width / 2) {//改图片在屏幕的左侧
+    //    console.log("left");
+        targetx = (windows_width / 2 - bank_width * 1.5) / 2;
+    } else {
+    //   console.log("right");
+        targetx = windows_width - (windows_width / 2 - bank_width * 1.5) / 2 + bank_width;
+    }
+    stepx = (targetx - bankx) / (time / 0.03);
+    stepy = (targety - banky) / (time / 0.03);
+    stepw = (bank_width * 0.5) / (time / 0.03);
+    steph = (bank_height * 0.5) / (time / 0.03);
+    //console.log("targetx : " + targetx);
+    //console.log("targety : " + targety);
+    //console.log("targetw : " + bank_height*1.5);
+    //console.log("targeth : " + bank_width*1.5);
+    changeBankSatus(id, stepx, stepy, stepw, steph, bank_width * 1.5);
+    changestatus();
+    moveOtherBank(id);
+}
+
+//页面中移除其他的银行图片
+function changeBankSatus(id, stepx, stepy, stepw, steph, targetw) {
+    var new_bank_height = $(id).css("height").split("px")[0] * 1.0 + steph;
+    var new_bank_width = $(id).css("width").split("px")[0] * 1.0 + stepw;
+    var new_bankx = $(id).css("left").split("px")[0] * 1.0 + stepx;
+    var new_banky = $(id).css("top").split("px")[0] * 1.0 + stepy;
+    $(id).css({
+        "position": "absolute",
+        "top": new_banky + "px",
+        "left":new_bankx + "px",
+        "width": new_bank_width + "px",
+        "height": new_bank_height + "px"
+    });
+    if (targetw > new_bank_width) {
+        setTimeout("changeBankSatus(\""+id+"\","+stepx+","+stepy+","+stepw+","+steph+","+targetw+")",30);
+    }
+}
+
+function moveOtherBank(currentid) {
+    for (var i = 0; i < 4; i++) {
+        if (currentid != banks[i]) {
+            id = banks[i];
+            console.log("id is "+id);
+            var banky = $(id).position().top;
+            var targety;
+            if (banky < windows_height / 2) {//改图片在屏幕的上侧
+                console.log("top");
+                targety = -200;
+            } else {
+                console.log("bottom");
+                targety = windows_height;
+            }
+            stepy = (targety - banky) / (time / 0.06);
+            console.log("targety is "+targety+" banky is "+banky+" stepy is " + stepy);
+            moveOthers(id, stepy, targety);
+        }
+    }
+}
+
+function moveOthers(id, stepy,targety) {
+    var new_banky = $(id).position().top + stepy;
+    $(id).css({
+        "position": "absolute",
+        "top": new_banky + "px",
+    });
+    if ((targety > windows_height) || (targety <-200)) {
+       
+    } else {
+        setTimeout("moveOthers(\"" + id + "\"," + stepy + "," + targety + ")", 30);
+    }
 }

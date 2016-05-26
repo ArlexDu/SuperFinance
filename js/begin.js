@@ -7,7 +7,6 @@ var windows_width;
 var bank_zoom;
 var distance = 30;
 var radius; //图标距离圆心的半径
-var inner_top;
 $(document).ready(function () {
     //  console.log("execute begin");
     abc = $("#abc");
@@ -19,7 +18,6 @@ $(document).ready(function () {
 function init() {
     windows_height = $(window).height();
     windows_width = $(window).width();
-    inner_top = windows_height - $("#inner").outerHeight() / 2;
     bank_zoom = $("#bank").width();
     $("body").css({
         "height": windows_height,
@@ -68,6 +66,7 @@ function setbank() {
     setTimeout(function () { ccb.fadeIn(700) }, 4300);
     setTimeout(function () { boc.fadeIn(700) }, 4600);
     setTimeout(function () { icbc.fadeIn(700) }, 4900);
+    setTimeout("removeBuilding()", 5000);
 }
 
 function radians2degree(radians) {
@@ -76,4 +75,32 @@ function radians2degree(radians) {
 
 function degree2radians(degree) {
     return (Math.PI / 180 * degree);
+}
+
+function removeBuilding() {
+    $("#abc_bank").css({
+        "opacity": "1"
+    });
+    $("#abc_building").css({
+        "display":"none"
+    });
+    $("#boc_bank").css({
+        "opacity": "1"
+    });
+    $("#boc_building").css({
+        "display": "none"
+    });
+    $("#ccb_bank").css({
+        "opacity": "1"
+    });
+    $("#ccb_building").css({
+        "display": "none"
+    });
+    $("#icbc_bank").css({
+        "opacity": "1"
+    });
+    $("#icbc_building").css({
+        "display": "none"
+
+    });
 }

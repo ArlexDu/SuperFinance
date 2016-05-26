@@ -227,39 +227,6 @@ body {
     z-index:2;
 }
 
-/*图标的动画显示*/
-@keyframes bank{
-  from {
-       transform:translate(0);
-    }
-    to{
-       transform:rotate();
-    }
-}
-@-webkit-keyframes bank{
-    from {
-        transform:rotate(0deg);
-    }
-    to{
-       transform:rotate(360deg);
-    }
-}
-@-moz-keyframes bank{
-   from {
-        transform:rotate(0deg);
-    }
-    to{
-       transform:rotate(360deg);
-    }
-}
-@-o-keyframes bank{
-  from {
-        transform:rotate(0deg);
-    }
-    to{
-       transform:rotate(360deg);
-    }
-}
 #bank{
     width:440px;
     height:440px;
@@ -326,10 +293,16 @@ body {
     -o-animation:abc 0.7s 4s ease-in-out forwards;
 }
 
-#abc_building:hover{
-    background-image:url("../image/abc_building_after.png");
+#abc_bank{
+     top:100px;
+     left:180px;
+     opacity:0;
+     background-image: url("../image/abc_building_before.png");
 }
 
+#abc_bank:hover{
+    background-image:url("../image/abc_building_after.png");
+}
 @keyframes boc{
     from {
         bottom:-200px;
@@ -387,9 +360,17 @@ body {
     -o-animation:boc 0.7s 4s ease-in-out forwards;
 }
 
-#boc_building:hover{
+#boc_bank{
+    bottom:100px;
+    left:180px;
+    opacity:0;
+    background-image: url("../image/boc_building_before.png");
+}
+
+#boc_bank:hover{
     background-image:url("../image/boc_building_after.png");
 }
+
 
 @keyframes ccb{
     from {
@@ -448,9 +429,17 @@ body {
     -o-animation:ccb 0.7s 4s ease-in-out forwards;
 }
 
-#ccb_building:hover{
+#ccb_bank{
+    top:100px;
+    right:180px;
+    opacity:0;
+    background-image: url("../image/ccb_building_before.png");
+}
+
+#ccb_bank:hover{
     background-image:url("../image/ccb_building_after.png");
 }
+
 @keyframes icbc{
     from {
         bottom:-200px;
@@ -508,7 +497,14 @@ body {
     -o-animation:icbc 0.7s 4s ease-in-out forwards;
 }
 
-#icbc_building:hover{
+#icbc_bank{
+    bottom:100px;
+    right:180px;
+    opacity:0;
+    background-image: url("../image/icbc_building_before.png");
+}
+
+#icbc_bank:hover{
     background-image: url("../image/icbc_building_after.png");
 }
 
@@ -524,11 +520,5 @@ body {
      cursor:pointer;
 }
 
-#changetobom{
-    width:500px;
-    height:500px;
-    position:absolute;
-    z-index:0;
-}
 
 
