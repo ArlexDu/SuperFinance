@@ -43,7 +43,7 @@ function center(id) {
 //设置银行图标位置
 function setbank() {
     radius = abc.width() / 2 + distance + $("#inner").outerWidth() * 1.5 / 2;
-    var bank_to_circle = abc.width() + distance;
+    //console.log("radius is "+radius);
     abc.css({
         "position": "absolute",
         "left": bank_zoom/2 - radius -40 ,
