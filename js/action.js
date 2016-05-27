@@ -43,6 +43,22 @@ $(function () {
             getBankDetialInfo("#icbc_bank");
         }
     });
+
+    $("#goto_abc").click(function () {
+        window.open("http://www.abchina.com/cn/");
+    });
+
+    $("#goto_boc").click(function () {
+        window.open("http://www.boc.cn/");
+    });
+
+    $("#goto_ccb").click(function () {
+        window.open("http://www.ccb.com/cn/home/indexv3.html");
+    });
+
+    $("#goto_icbc").click(function () {
+        window.open("http://www.icbc.com.cn/icbc/");
+    });
 });
 
 
@@ -191,8 +207,11 @@ function getBankDetialInfo(id) {
     changestatus();
     moveOtherBank(id);
     var info = id.split("_")[0] + "_info";
-    console.log("info is " + info);
-    bankInfo(info,targetx,targety,bank_width*1.5,bank_height*1.5,isRight);
+    //console.log("info is " + info);
+    bankInfo(info, targetx, targety, bank_width * 1.5, bank_height * 1.5, isRight);
+    var goto = "#goto_" + id.split("#")[1].split("_")[0];
+    console.log("goto is " + goto);
+    gotoBank(goto);
 }
 
 //页面中移除其他的银行图片
@@ -267,4 +286,26 @@ function bankInfo(id,targetx,targety,width,height,isRight) {
 
     });
     $(id).fadeIn(500);
+}
+
+//显示跳转到主页控件
+function gotoBank(id) {
+    $(id).css({
+        "position": "absolute",
+        "left": (windows_width - $(id).outerWidth()) / 2,
+        "top": -80
+    });
+    var stepy = 80 / (time / 0.06);
+    animationGotoBank(id,stepy);
+}
+
+function animationGotoBank(id,stepy) {
+    var new_banky = $(id).css("top").split("px")[0] * 1.0 + stepy;
+    $(id).css({
+        "position": "absolute",
+        "top": new_banky + "px",
+    });
+    if (new_banky < -2) {
+        setTimeout("animationGotoBank(\"" + id + "\"," + stepy + ")", 30);
+    }
 }

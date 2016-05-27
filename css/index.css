@@ -548,4 +548,41 @@ body {
     background-image:url("../image/icbc_info.png");
 }
 
+/*跳转主页的按键*/
+.goto{
+    top:-80px;
+    width:80px;
+    height:80px;
+    position:absolute;
+    background-size: contain;
+    background-repeat:no-repeat;
+    cursor:pointer;
+}
+#goto_abc{
+    background-image:url("../image/goto_abc_before.png");
+}
+#goto_abc:hover{
+    background-image:url("../image/goto_abc_after.png");
+}
+
+#goto_boc{
+    background-image:url("../image/goto_boc_before.png");
+}
+#goto_boc:hover{
+    background-image:url("../image/goto_boc_after.png");
+}
+
+#goto_ccb{
+    background-image:url("../image/goto_ccb_before.png");
+}
+#goto_ccb:hover{
+    background-image:url("../image/goto_ccb_after.png");
+}
+
+#goto_icbc{
+    background-image:url("../image/goto_icbc_before.png");
+}
+#goto_icbc:hover{
+    background-image:url("../image/goto_icbc_after.png");
+}
 
