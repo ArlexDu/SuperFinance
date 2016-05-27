@@ -522,3 +522,30 @@ body {
 
 
 
+/*银行介绍的类*/
+.bank_info{
+    width:450px;
+    height:450px;
+    position:absolute;
+    display:none;
+    background-size: contain;
+    background-repeat:no-repeat;
+}
+
+#abc_info{
+    background-image:url("../image/abc_info.png");
+}
+
+#boc_info{
+    background-image:url("../image/boc_info.png");
+}
+
+#ccb_info{
+    background-image:url("../image/ccb_info.png");
+}
+
+#icbc_info{
+    background-image:url("../image/icbc_info.png");
+}
+
+

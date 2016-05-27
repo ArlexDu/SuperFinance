@@ -165,12 +165,13 @@ function getBankDetialInfo(id) {
     var banky = $(id).css("top").split("px")[0] * 1.0;
     var targety = (windows_height - bank_height * 1.5) / 2;
     var targetx;
+    var isRight;//判断银行图片的位置
     if (bankx < windows_width / 2) {//改图片在屏幕的左侧
-    //    console.log("left");
+        isRight = false;
         targetx = (windows_width / 2 - bank_width * 1.5) / 2;
     } else {
-    //   console.log("right");
-        targetx = windows_width - (windows_width / 2 - bank_width * 1.5) / 2 + bank_width;
+        isRight = true;
+        targetx = windows_width - (windows_width / 2 - bank_width * 1.5) / 2 - bank_width;
     }
     stepx = (targetx - bankx) / (time / 0.03);
     stepy = (targety - banky) / (time / 0.03);
@@ -179,10 +180,19 @@ function getBankDetialInfo(id) {
     //console.log("targetx : " + targetx);
     //console.log("targety : " + targety);
     //console.log("targetw : " + bank_height*1.5);
-    //console.log("targeth : " + bank_width*1.5);
+    //console.log("targeth : " + bank_width*1.5); #abc_bank
+    var image = "url(\"../image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
+  //  console.log("image is " + image);
+    $(id).css({
+        "background-image": image,
+        "cursor":"auto"
+    });
     changeBankSatus(id, stepx, stepy, stepw, steph, bank_width * 1.5);
     changestatus();
     moveOtherBank(id);
+    var info = id.split("_")[0] + "_info";
+    console.log("info is " + info);
+    bankInfo(info,targetx,targety,bank_width*1.5,bank_height*1.5,isRight);
 }
 
 //页面中移除其他的银行图片
@@ -207,18 +217,18 @@ function moveOtherBank(currentid) {
     for (var i = 0; i < 4; i++) {
         if (currentid != banks[i]) {
             id = banks[i];
-            console.log("id is "+id);
+  //          console.log("id is "+id);
             var banky = $(id).position().top;
             var targety;
             if (banky < windows_height / 2) {//改图片在屏幕的上侧
-                console.log("top");
+ //               console.log("top");
                 targety = -200;
             } else {
-                console.log("bottom");
+ //               console.log("bottom");
                 targety = windows_height;
             }
             stepy = (targety - banky) / (time / 0.06);
-            console.log("targety is "+targety+" banky is "+banky+" stepy is " + stepy);
+ //           console.log("targety is "+targety+" banky is "+banky+" stepy is " + stepy);
             moveOthers(id, stepy, targety);
         }
     }
@@ -230,9 +240,31 @@ function moveOthers(id, stepy,targety) {
         "position": "absolute",
         "top": new_banky + "px",
     });
-    if ((targety > windows_height) || (targety <-200)) {
+    if ((new_banky > windows_height) || (new_banky <-200)) {
        
     } else {
         setTimeout("moveOthers(\"" + id + "\"," + stepy + "," + targety + ")", 30);
     }
+}
+
+//显示银行的具体信息
+function bankInfo(id,targetx,targety,width,height,isRight) {
+    var top = targety - 50;
+    var left
+    if (isRight) {
+        //console.log("on the left")
+        //console.log("target is " + targetx);
+        left = targetx - 100 - 500;
+    } else {
+        //console.log("on the right")
+        left = targetx + width + 100;
+    }
+    //console.log("left is "+left);
+    $(id).css({
+        "position": "absolute",
+        "top": top + "px",
+        "left": left + "px"
+
+    });
+    $(id).fadeIn(500);
 }
