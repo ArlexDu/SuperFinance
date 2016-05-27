@@ -1,5 +1,6 @@
 ﻿html{
     overflow-y:hidden;
+    overflow-x:hidden;
 }
 body {
     margin:0px;
@@ -43,7 +44,7 @@ body {
     height: 100px;
     background-image: url("../image/logo.png");
     background-size: cover;
-    cursor:pointer;
+    cursor:auto;
     opacity:1;
     z-index:2;
     animation:change_alpha 4s linear;
@@ -294,9 +295,8 @@ body {
 }
 
 #abc_bank{
-     top:100px;
-     left:180px;
      opacity:0;
+     cursor:auto;
      background-image: url("../image/abc_building_before.png");
 }
 
@@ -361,9 +361,8 @@ body {
 }
 
 #boc_bank{
-    bottom:100px;
-    left:180px;
     opacity:0;
+    cursor:auto;
     background-image: url("../image/boc_building_before.png");
 }
 
@@ -430,9 +429,8 @@ body {
 }
 
 #ccb_bank{
-    top:100px;
-    right:180px;
     opacity:0;
+    cursor:auto;
     background-image: url("../image/ccb_building_before.png");
 }
 
@@ -498,9 +496,8 @@ body {
 }
 
 #icbc_bank{
-    bottom:100px;
-    right:180px;
     opacity:0;
+    cursor:auto;
     background-image: url("../image/icbc_building_before.png");
 }
 
@@ -586,3 +583,28 @@ body {
     background-image:url("../image/goto_icbc_after.png");
 }
 
+/*箭头的样式*/
+.arrow{
+    width:100px;
+    height:100px;
+    position:absolute;
+    background-size: contain;
+    background-repeat:no-repeat;
+    cursor:pointer;
+    display:none;
+}
+#arrowR{
+    right:0px;
+    background-image:url("../image/arrowR_before.png");
+}
+#arrowR:hover{
+    background-image:url("../image/arrowR_after.png");
+}
+
+#arrowL{
+    right:0px;
+    background-image:url("../image/arrowL_before.png");
+}
+#arrowL:hover{
+    background-image:url("../image/arrowL_after.png");
+}

@@ -7,6 +7,8 @@ var windows_width;
 var bank_zoom;
 var distance = 30;
 var radius; //图标距离圆心的半径
+var bank_height;//银行建筑的高度
+var bank_width;//银行建筑的宽度
 $(document).ready(function () {
     //  console.log("execute begin");
     abc = $("#abc");
@@ -76,28 +78,57 @@ function radians2degree(radians) {
 function degree2radians(degree) {
     return (Math.PI / 180 * degree);
 }
-
+/*
+abc是left top 定位
+boc是left bottom 定位
+ccb是top right 定位
+icbc是 bottom right 定位
+*/
 function removeBuilding() {
+    bank_height = $("#abc_building").css("height").split("px")[0] * 1.0 ;
+    bank_width = $("#abc_building").css("width").split("px")[0] * 1.0 ;
+    var bankx;
+    var banky;
+    bankx = $("#abc_building").css("left").split("px")[0] * 1.0 ;
+    banky = $("#abc_building").css("top").split("px")[0] * 1.0 ;
     $("#abc_bank").css({
-        "opacity": "1"
+        "top": banky,
+        "left":bankx,
+        "opacity": "1",
+        "cursor":"pointer"
     });
     $("#abc_building").css({
         "display":"none"
     });
+    bankx = $("#boc_building").css("left").split("px")[0] * 1.0;
+    banky = windows_height - $("#boc_building").css("bottom").split("px")[0] * 1.0 - bank_height;
     $("#boc_bank").css({
-        "opacity": "1"
+        "top": banky,
+        "left": bankx,
+        "opacity": "1",
+         "cursor":"pointer"
     });
     $("#boc_building").css({
         "display": "none"
     });
+    bankx = windows_width - $("#ccb_building").css("right").split("px")[0] * 1.0 - bank_width;
+    banky = $("#ccb_building").css("top").split("px")[0] * 1.0;
     $("#ccb_bank").css({
-        "opacity": "1"
+        "top": banky,
+        "left": bankx,
+        "opacity": "1",
+        "cursor": "pointer"
     });
     $("#ccb_building").css({
         "display": "none"
     });
+    bankx = windows_width - $("#icbc_building").css("right").split("px")[0] * 1.0 - bank_width;
+    banky = windows_height - $("#icbc_building").css("bottom").split("px")[0] * 1.0 - bank_height;
     $("#icbc_bank").css({
-        "opacity": "1"
+        "top": banky,
+        "left": bankx,
+        "opacity": "1",
+        "cursor": "pointer"
     });
     $("#icbc_building").css({
         "display": "none"
