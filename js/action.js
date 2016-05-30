@@ -12,6 +12,7 @@ $(function () {
         if(detial){
 
         } else {
+            moveOtherBank("ALL");
             changestatus();
         }
     });
@@ -80,6 +81,8 @@ function changestatus() {
     });
     changeypostion();
     changeicons();
+   // moveOtherBank("ALL");
+    showArrow();
 }
 //改变按钮组的位置
 function changeypostion() {
@@ -190,6 +193,8 @@ function getBankDetialInfo(id) {
     var bankx = $(id).css("left").split("px")[0] * 1.0;
     var banky = $(id).css("top").split("px")[0] * 1.0;
     var targety = (windows_height - bank_height * 1.5) / 2;
+    //console.log("windows_height : " + windows_height);
+    //console.log("bank_height : " + bank_height);
     var targetx;
     var isRight;//判断银行图片的位置
     if (bankx < windows_width / 2) {//图片在屏幕的左侧
@@ -203,10 +208,10 @@ function getBankDetialInfo(id) {
     stepy = (targety - banky) / (time / 0.03);
     stepw = (bank_width * 0.5) / (time / 0.03);
     steph = (bank_height * 0.5) / (time / 0.03);
-    //console.log("targetx : " + targetx);
-    //console.log("targety : " + targety);
+    console.log("stepx : " + stepx);
+    console.log("stepy : " + stepy);
     //console.log("targetw : " + bank_height*1.5);
-    //console.log("targeth : " + bank_width*1.5); #abc_bank
+    //console.log("targeth : " + bank_width*1.5); //#abc_bank
     var image = "url(\"../image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
   //  console.log("image is " + image);
     $(id).css({
