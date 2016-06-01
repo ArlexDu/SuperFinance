@@ -46,7 +46,7 @@ body {
     background-size: cover;
     cursor:auto;
     opacity:1;
-    z-index:2;
+    z-index:3;
     animation:change_alpha 4s linear;
     -moz-animation:change_alpha 4s linear;
     -o-animation:change_alpha 4s linear;
@@ -106,6 +106,7 @@ body {
      width: 200px;
      height: 200px;
      opacity:0;
+     z-index:1;
      background-image: url("../image/inner_bg.png");
      background-size: cover;
      animation:inner 1s 3s linear forwards;
@@ -591,11 +592,11 @@ body {
     background-size: contain;
     background-repeat:no-repeat;
     cursor:pointer;
-    display:none;
 }
 #arrowR{
     z-index:2;
-    right:-10px;
+    top:0;
+    left:0;
     background-image:url("../image/arrowR.png");
     transition:all 0.3s ease-in-out;
     -moz-transition:all 0.3s ease-in-out;
@@ -611,7 +612,9 @@ body {
 
 #arrowL{
     z-index:2;
-    left:-10px;
+    top:0;
+    left:0;
+    position:absolute;
     background-image:url("../image/arrowL.png");
     transition:all 0.3s ease-in-out;
     -moz-transition:all 0.3s ease-in-out;
@@ -623,4 +626,21 @@ body {
     -moz-transform:translateX(10px);
     -o-transform:translateX(10px);
     transform:translateX(10px);
+}
+
+#arrowB{
+    z-index:2;
+    top:0;
+    left:0;
+    background-image:url("../image/abc_arrowU.png");
+    transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    -webkit-transition:all 0.3s ease-in-out;
+}
+#arrowB:hover{
+    -webkit-transform:translateY(10px);
+    -moz-transform:translateY(10px);
+    -o-transform:translateY(10px);
+    transform:translateY(10px);
 }

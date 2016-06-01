@@ -14,13 +14,18 @@ $(function () {
     $(".icons").each(function () {
         $(this).click(function () {
             var id = $(this).attr("id");
-            console.log("id is "+id);
+  //          console.log("id is "+id);
             changebank = false;
             changeproduct = true;
+            currentbankName = id;//abc
             if (detial) {//是否还是主页状态
+                var step = 60 / (time / 0.06);
+                changeArrow(-step, 0);
                 bankToproduct();
                 setInfo();
+                setTimeout(function () { showArrow(); }, 300);
             } else {
+                showArrow();
                 moveOtherBank("ALL");
                 changestatus();
                 setInfo();
@@ -62,11 +67,13 @@ $(function () {
         });
     });
 
-    $(".detailProduction").each(function () {
-        $(this).click(function () {
-            var id = $(this).attr("id");
-            
-        });
+    $(document).on("click", ".detailProduction", function (e) {
+        var id = $(this).attr("id");
+        //console.log("id is " + id);
+        showinformation(id);
+        showBackArrow(id);
+        var step = 60 / (time / 0.06);
+        changeArrow(-step,0);
     });
 
     $("#arrowR").click(function () {
@@ -90,6 +97,20 @@ $(function () {
             changePage(0, stepx);
         }
     });
+    //由具体信息界面返回到产品列表界面
+    $("#arrowB").click(function () {
+        var top = $("#info").position().top;
+        var step;
+        if (top < 0) {//当前列表在上面
+            step = windows_height / (time / 0.03);
+        } else {
+            step = -windows_height / (time / 0.03);
+        }
+        changeProductInfomation("#info", "#information", step, 0);
+        showArrow();
+        var step = 60 / (time / 0.06);
+        changeBackArrow(-step, 0);
+    });
 });
 
 
@@ -103,7 +124,7 @@ function changestatus() {
     changeypostion();
     changeicons();
    // moveOtherBank("ALL");
-    showArrow();
+   // showArrow();
 }
 //改变按钮组的位置
 function changeypostion() {
@@ -355,21 +376,24 @@ function animationGotoBank(id,stepy) {
 
 //显示左右切换箭头
 function showArrow(){
-    $("#arrowR").css({
-        "position": "absolute",
+    $("#arrowRDiv").css({
         "display":"block",
-        "top": (windows_height - $("#arrowR").outerHeight()*2) / 2
+        "top": (windows_height - $("#arrowRDiv").outerHeight() * 2) / 2,
+        "left": windows_width 
     });
 
-    $("#arrowL").css({
-        "position": "absolute",
+    $("#arrowLDiv").css({
         "display": "block",
-        "top": (windows_height - $("#arrowL").outerHeight()*2) / 2
+        "top": (windows_height - $("#arrowLDiv").outerHeight() * 2) / 2,
+        "left": -70
     });
+    var step = 60 / (time / 0.03);
+    changeArrow(step, 0);
 }
 
 //点击切换箭头切换银行
 function changeNext() {
+    console.log("changenext");
     var nextid = (currentbank + 1) > 3 ? 0 : (currentbank + 1);
     var next = banks[nextid];
     var params = initPosition(next, true);//返回当前图片id 信息id 下一个信息id
@@ -460,20 +484,22 @@ function changebankinfoanimation(Pic,Info,stepxP,stepxI,change) {
         "position": "absolute",
         "left": new_bankx + "px",
     });
-    change = change + stepx;
-    if (stepxP > 0) {//实现逐渐变慢
-        stepxP = stepxP / (1.1)>1?stepxP / (1.1):1;
-    } else {
-        stepxP = stepxP / (1.1)<-1?stepxP / (1.1):-1;
-    }
+    change = change + stepxP;
+    if (Math.abs(change) >= (windows_width/2)) {
+        if (stepxP > 0) {//实现逐渐变慢
+            stepxP = stepxP / (1.1) > 1 ? stepxP / (1.1) : 1;
+        } else {
+            stepxP = stepxP / (1.1) < -1 ? stepxP / (1.1) : -1;
+        }
 
-    if (stepxI > 0) {//实现逐渐变慢
-        stepxI = stepxI / (1.1) > 1 ? stepxI / (1.1) : 1;
-    } else {
-        stepxI = stepxI / (1.1) < -1 ? stepxI / (1.1) : -1;
+        if (stepxI > 0) {//实现逐渐变慢
+            stepxI = stepxI / (1.1) > 1 ? stepxI / (1.1) : 1;
+        } else {
+            stepxI = stepxI / (1.1) < -1 ? stepxI / (1.1) : -1;
+        }
     }
-    //console.log("change is " + change);
-    //console.log("stepx is " + stepx);
+    console.log("change is " + change);
+    console.log("stepx is " + stepx);
     if (Math.abs(change) >= windows_width) {
         //console.log("change is " + change);
         //console.log("windows_width is "+windows_width);

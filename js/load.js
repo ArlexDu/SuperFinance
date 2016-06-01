@@ -30,6 +30,12 @@ function init() {
     center("#inner");
     center("#outter");
     center("#bank");
+    //把information放在上面
+    $("#information").css({
+        "position": "absolute",
+        "left": (windows_width - $("#information").outerWidth()) / 2,
+        "top": (-windows_height - $("#information").outerHeight()) / 2,
+    });
     setbank();
 }
 //居中响应的div
