@@ -7,6 +7,7 @@
     z-index:1;
 }
 
+/*展示的产品*/
 .detailProduction {
     float: left;
     width: 158px;
@@ -15,6 +16,7 @@
     display: inline;
     background: url("../image/product_bg.png") no-repeat;
     position: absolute;
+    cursor:pointer;
 }
 .detailTitle {
     float: left;
@@ -43,4 +45,18 @@
     color: #ff8a00;
     font-weight: bold;
     text-align: center;
+}
+/*产品的具体信息*/
+.information_list {
+    border: 0;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+.information {
+    float: left;
+    width: 930px;
+    margin: 0 15px;
+    display: inline;
+    background: #ffffff;
 }

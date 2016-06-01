@@ -10,90 +10,63 @@ var currentbank;//当前显示的银行的编号
 var changebank = false;
 var changeproduct = false;
 $(function () {
-    $("#abc").click(function () {
-        changebank = false;
-        changeproduct = true;
-        if(detial){//是否还是主页状态
-
-        } else {
-            moveOtherBank("ALL");
-            changestatus();
-            setInfo();
-        }
+    //点击银行图标进入不同的产品界面
+    $(".icons").each(function () {
+        $(this).click(function () {
+            var id = $(this).attr("id");
+            console.log("id is "+id);
+            changebank = false;
+            changeproduct = true;
+            if (detial) {//是否还是主页状态
+                bankToproduct();
+                setInfo();
+            } else {
+                moveOtherBank("ALL");
+                changestatus();
+                setInfo();
+            }
+        });
     });
-    $("#boc").click(function () {
-        if (detial) {//是否还是主页状态
-
-        } else {
-            moveOtherBank("ALL");
-            changestatus();
-        }
-    });
-    $("#ccb").click(function () {
-        if (detial) {//是否还是主页状态
-
-        } else {
-            moveOtherBank("ALL");
-            changestatus();
-        }
-    });
-    $("#icbc").click(function () {
-        if (detial) {//是否还是主页状态
-
-        } else {
-            moveOtherBank("ALL");
-            changestatus();
-        }
-    });
-
+    //点击“华”刷新主页
     $("#logo").click(function () {
         if (detial) {
             window.location = "http://localhost:62754/";
             detial = false;
         }
     })
-    $("#abc_bank").click(function () {
-        changebank = true;
-        if (!detial) {
-            getBankDetialInfo("#abc_bank");
-        }
+    //点击银行建筑图片事件
+    $(".banks").each(function () {
+        $(this).click(function () {
+            var id = $(this).attr("id");
+            changeproduct = false;
+            changebank = true;
+            if (!detial) {
+                getBankDetialInfo(("#"+id));
+            }
+        });
     });
 
-    $("#boc_bank").click(function () {
-        changebank = true;
-        if (!detial) {
-            getBankDetialInfo("#boc_bank");
-        }
+    //跳转到对应的银行主页
+    $(".goto").each(function () {
+        $(this).click(function () {
+            var id = $(this).attr("id");
+            if (id == "goto_abc") {
+                window.open("http://www.abchina.com/cn/");
+            } else if (id == "goto_boc") {
+                window.open("http://www.boc.cn/");
+            } else if (id == "goto_ccb") {
+                window.open("http://www.ccb.com/cn/home/indexv3.html");
+            } else if (id == "goto_icbc") {
+                window.open("http://www.icbc.com.cn/icbc/");
+            }
+        });
     });
 
-    $("#ccb_bank").click(function () {
-        changebank = true;
-        if (!detial) {
-            getBankDetialInfo("#ccb_bank");
-        }
-    });
-
-    $("#icbc_bank").click(function () {
-        changebank = true;
-        if (!detial) {
-            getBankDetialInfo("#icbc_bank");
-        }
-    });
-
-    $("#goto_abc").click(function () {
-        window.open("http://www.abchina.com/cn/");
-    });
-
-    $("#goto_boc").click(function () {
-        window.open("http://www.boc.cn/");
-    });
-
-    $("#goto_ccb").click(function () {
-        window.open("http://www.ccb.com/cn/home/indexv3.html");
-    });
-
-    $("#goto_icbc").click(function () {
-        window.open("http://www.icbc.com.cn/icbc/");
+    $(".detailProduction").each(function () {
+        $(this).click(function () {
+            var id = $(this).attr("id");
+            
+        });
     });
 
     $("#arrowR").click(function () {
@@ -401,9 +374,9 @@ function changeNext() {
     var next = banks[nextid];
     var params = initPosition(next, true);//返回当前图片id 信息id 下一个信息id
     var step = windows_width / (time / 0.06);
-    console.log(params[0] + "," + params[1]+","+params[2]);
-    changebankinfoanimation(params[0], params[1], step, 0);
-    changebankinfoanimation(next, params[2], step, 0);
+ //   console.log(params[0] + "," + params[1]+","+params[2]);
+    changebankinfoanimation(params[0], params[1], step,step, 0);
+    changebankinfoanimation(next, params[2], step,step ,0);
     changeGotoBank(params[0], next);
     currentbank = nextid;
 
@@ -414,8 +387,8 @@ function changeLast() {
     var last = banks[lastid];
     var params = initPosition(last, false);//返回当前图片id 信息id 下一个信息id
     var step = windows_width / (time / 0.06) * (-1);
-    changebankinfoanimation(params[0], params[1], step, 0);
-    changebankinfoanimation(last, params[2], step, 0);
+    changebankinfoanimation(params[0], params[1], step, step, 0);
+    changebankinfoanimation(last, params[2], step, step, 0);
     changeGotoBank(params[0], last);
     currentbank = lastid;
 }
@@ -472,26 +445,32 @@ function initPosition(id, isnext) {
     return [current, currentinfo, info];
 }
 
-function changebankinfoanimation(Pic,Info,stepx,change) {
+function changebankinfoanimation(Pic,Info,stepxP,stepxI,change) {
     //console.log("move");
     //console.log("curx is " + $(Pic).css("left").split("px")[0] * 1.0);
     //console.log("change is " + change);
     //console.log("stepx is " + stepx);
-    var new_bankx = $(Pic).css("left").split("px")[0] * 1.0 + stepx;
+    var new_bankx = $(Pic).css("left").split("px")[0] * 1.0 + stepxP;
     $(Pic).css({
         "position": "absolute",
         "left": new_bankx + "px",
     });
-    new_bankx = $(Info).css("left").split("px")[0] * 1.0 + stepx;
+    new_bankx = $(Info).css("left").split("px")[0] * 1.0 + stepxI;
     $(Info).css({
         "position": "absolute",
         "left": new_bankx + "px",
     });
     change = change + stepx;
-    if (stepx > 0) {//实现逐渐变慢
-        stepx = stepx / (1.1)>1?stepx / (1.1):1;
+    if (stepxP > 0) {//实现逐渐变慢
+        stepxP = stepxP / (1.1)>1?stepxP / (1.1):1;
     } else {
-        stepx = stepx / (1.1)<-1?stepx / (1.1):-1;
+        stepxP = stepxP / (1.1)<-1?stepxP / (1.1):-1;
+    }
+
+    if (stepxI > 0) {//实现逐渐变慢
+        stepxI = stepxI / (1.1) > 1 ? stepxI / (1.1) : 1;
+    } else {
+        stepxI = stepxI / (1.1) < -1 ? stepxI / (1.1) : -1;
     }
     //console.log("change is " + change);
     //console.log("stepx is " + stepx);
@@ -505,9 +484,9 @@ function changebankinfoanimation(Pic,Info,stepx,change) {
         } else {
               stepx = (windows_width - Math.abs(change))*(-1);
         }
-        setTimeout("changebankinfoanimation(\"" + Pic + "\",\"" + Info + "\"," + stepx + "," + change + ")", 30);
+        setTimeout("changebankinfoanimation(\"" + Pic + "\",\"" + Info + "\"," + stepxP+","+stepxI + "," + change + ")", 30);
     } else {
-        setTimeout("changebankinfoanimation(\"" + Pic + "\",\""+Info+"\","+ stepx + "," + change + ")", 30);
+        setTimeout("changebankinfoanimation(\"" + Pic + "\",\""+Info+"\","+ stepxP+","+stepxI + "," + change + ")", 30);
     }
 }
 
@@ -515,7 +494,7 @@ function changebankinfoanimation(Pic,Info,stepx,change) {
 function changeGotoBank(current,next) {
     var currentgoto = "#goto_" + current.split("#")[1].split("_")[0];
     var nextgoto = "#goto_" + next.split("#")[1].split("_")[0];
-    console.log("currentgoto is " + currentgoto + " and nextgoto is " + nextgoto)
+ //   console.log("currentgoto is " + currentgoto + " and nextgoto is " + nextgoto)
     var stepy = -80 / (time / 0.06);
     animationGotoBankBack(currentgoto, stepy);
     setTimeout(function () { gotoBank(nextgoto); }, 300);
@@ -530,4 +509,21 @@ function animationGotoBankBack(id, stepy) {
     if (new_banky > -80) {
         setTimeout("animationGotoBankBack(\"" + id + "\"," + stepy + ")", 30);
     }
+}
+
+//银行界面跳转到产品界面
+function bankToproduct() {
+    var current = banks[currentbank];
+    var currentinfo = current.split("_")[0] + "_info";
+    var bankx = $(current).css("left").split("px")[0] * 1.0;
+    var stepx;
+    if (bankx > (windows_width / 2)) {//图片在右边
+        stepx = windows_width / (time / 0.03);
+    } else {
+        stepx = -windows_width / (time / 0.03);
+    }
+    changebankinfoanimation(current, currentinfo, stepx, -stepx, 0);
+    var stepy = -80 / (time / 0.06);
+    var currentgoto = "#goto_" + current.split("#")[1].split("_")[0];
+    animationGotoBankBack(currentgoto, stepy);
 }

@@ -75,3 +75,70 @@ function changePage(change, stepx) {
         setTimeout("changePage(" + change + "," + stepx + ")", 30);
     }
 }
+
+//展示信心列表
+function showinformation() {
+    var information_list = " <table class=\"information_list\" cellspacing=\"0\" cellpadding=\"0\">" +
+            "<tbody>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                    "<th>产品名称</th>" +
+                    "<td colspan=\"3\" style=\"background-color:#fafafa;width:750px;\">“金钥匙·安心得利”2016年第2059期美元理财产品</td>" +
+                "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                    "<th>产品系列</th>" +
+                    "<td>安心得利</td>" +
+                    "<th>币种</th>" +
+                    "<td>美元</td>" +
+                "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                    "<th>认购起始日期</th>" +
+                    "<td style=\"background-color:#fafafa;\">2016/06/01</td>" +
+                    "<th>认购结束日期</th>" +
+                    "<td style=\"background-color:#fafafa;\">2016/06/07</td>" +
+                "</tr" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                "<th>起息日</th>" +
+                "<td>2016/06/08</td>" +
+                    "<th>到期日</th>" +
+                    "<td>2016/12/05</td>" +
+                    "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                 "<tr>" +
+                "<th>投资期限</th>" +
+                    "<td style=\"background-color:#fafafa;\">180天</td>" +
+                    "<th>预期年化收益率</th>" +
+                    "<td style=\"background-color:#fafafa;\">1.3%</td>" +
+                    "</tr>" +
+               "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                "<th>产品开封闭类型</th>" +
+                "<td>封闭</td>" +
+                   "<th>销售状态</th>" +
+                   "<td><span style=\"color:#000;\" id=\"SaleStatusSpan\">可售</span></td>" +
+                   "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                "<th>风险等级</th>" +
+                    "<td style=\"background-color:#fafafa;\">中低</td>" +
+                    "<th>收益类型</th>" +
+                    "<td style=\"background-color:#fafafa;\">非保本浮动收益</td>" +
+                    "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+                "<tr>" +
+                "<th>发行区域</th>" +
+                    "<td><span titlle=\"全国发行\">全国发行</span></td>" +
+                    "<th>起购金额</th>" +
+                    "<td>" +
+
+                    "</td>" +
+                    "</tr>" +
+                "<tr><td colspan=\"4\" style=\"height:8px; background-color:#fff;\"></td></tr>" +
+            "</tbody>" +
+        "</table>";
+    var list = $(information_list);
+    list.appendTo("#information");
+}
