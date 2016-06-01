@@ -7,15 +7,45 @@ var icon_radius = 40; //每一帧图标大小的变化
 var icon_stop = false;//过渡按钮组旋转动画停止
 var banks = ["#abc_bank", "#boc_bank", "#ccb_bank", "#icbc_bank"];
 var currentbank;//当前显示的银行的编号
+var changebank = false;
+var changeproduct = false;
 $(function () {
-    $(".icons").click(function () {
-        if(detial){
+    $("#abc").click(function () {
+        changebank = false;
+        changeproduct = true;
+        if(detial){//是否还是主页状态
+
+        } else {
+            moveOtherBank("ALL");
+            changestatus();
+            setInfo();
+        }
+    });
+    $("#boc").click(function () {
+        if (detial) {//是否还是主页状态
 
         } else {
             moveOtherBank("ALL");
             changestatus();
         }
     });
+    $("#ccb").click(function () {
+        if (detial) {//是否还是主页状态
+
+        } else {
+            moveOtherBank("ALL");
+            changestatus();
+        }
+    });
+    $("#icbc").click(function () {
+        if (detial) {//是否还是主页状态
+
+        } else {
+            moveOtherBank("ALL");
+            changestatus();
+        }
+    });
+
     $("#logo").click(function () {
         if (detial) {
             window.location = "http://localhost:62754/";
@@ -23,24 +53,28 @@ $(function () {
         }
     })
     $("#abc_bank").click(function () {
+        changebank = true;
         if (!detial) {
             getBankDetialInfo("#abc_bank");
         }
     });
 
     $("#boc_bank").click(function () {
+        changebank = true;
         if (!detial) {
             getBankDetialInfo("#boc_bank");
         }
     });
 
     $("#ccb_bank").click(function () {
+        changebank = true;
         if (!detial) {
             getBankDetialInfo("#ccb_bank");
         }
     });
 
     $("#icbc_bank").click(function () {
+        changebank = true;
         if (!detial) {
             getBankDetialInfo("#icbc_bank");
         }
@@ -63,11 +97,25 @@ $(function () {
     });
 
     $("#arrowR").click(function () {
-        changeNext();
+        if (changebank) {//转换银行信息
+             changeNext();
+        }
+
+        if (changeproduct) {//转换理财产品
+            var stepx = windows_width / (time / 0.03);
+            changePage(0,-stepx);
+        }
+       
     });
 
     $("#arrowL").click(function () {
-        changeLast();
+        if (changebank) {
+            changeLast();
+        }
+        if (changeproduct) {
+            var stepx = windows_width / (time / 0.03);
+            changePage(0, stepx);
+        }
     });
 });
 
@@ -337,15 +385,13 @@ function showArrow(){
     $("#arrowR").css({
         "position": "absolute",
         "display":"block",
-        "right": 0,
-        "top": (windows_height - $("#arrowR").outerHeight()) / 2
+        "top": (windows_height - $("#arrowR").outerHeight()*2) / 2
     });
 
     $("#arrowL").css({
         "position": "absolute",
         "display": "block",
-        "left": 0,
-        "top": (windows_height - $("#arrowL").outerHeight()) / 2
+        "top": (windows_height - $("#arrowL").outerHeight()*2) / 2
     });
 }
 

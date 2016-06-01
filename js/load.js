@@ -9,6 +9,7 @@ var distance = 30;
 var radius; //图标距离圆心的半径
 var bank_height;//银行建筑的高度
 var bank_width;//银行建筑的宽度
+var arrowTop;//两端箭头的top
 $(document).ready(function () {
     //  console.log("execute begin");
     abc = $("#abc");
@@ -135,3 +136,4 @@ function removeBuilding() {
 
     });
 }
+

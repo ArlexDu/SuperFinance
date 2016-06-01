@@ -585,8 +585,8 @@ body {
 
 /*箭头的样式*/
 .arrow{
-    width:100px;
-    height:100px;
+    width:70px;
+    height:70px;
     position:absolute;
     background-size: contain;
     background-repeat:no-repeat;
@@ -594,17 +594,33 @@ body {
     display:none;
 }
 #arrowR{
-    right:0px;
-    background-image:url("../image/arrowR_before.png");
+    z-index:2;
+    right:-10px;
+    background-image:url("../image/arrowR.png");
+    transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    -webkit-transition:all 0.3s ease-in-out;
 }
 #arrowR:hover{
-    background-image:url("../image/arrowR_after.png");
+    -webkit-transform:translateX(-10px);
+    -moz-transform:translateX(-10px);
+    -o-transform:translateX(-10px);
+    transform:translateX(-10px);
 }
 
 #arrowL{
-    right:0px;
-    background-image:url("../image/arrowL_before.png");
+    z-index:2;
+    left:-10px;
+    background-image:url("../image/arrowL.png");
+    transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    -webkit-transition:all 0.3s ease-in-out;
 }
 #arrowL:hover{
-    background-image:url("../image/arrowL_after.png");
+    -webkit-transform:translateX(10px);
+    -moz-transform:translateX(10px);
+    -o-transform:translateX(10px);
+    transform:translateX(10px);
 }

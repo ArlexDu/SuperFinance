@@ -1,0 +1,46 @@
+﻿
+/*信息的承载体*/
+#info{
+    margin-left:20px;
+    position:absolute;
+    display:none;
+    z-index:1;
+}
+
+.detailProduction {
+    float: left;
+    width: 158px;
+    height: 144px;
+    padding: 15px 10px;
+    display: inline;
+    background: url("../image/product_bg.png") no-repeat;
+    position: absolute;
+}
+.detailTitle {
+    float: left;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.detailTitleS {
+    float: left;
+    width: 100%;
+    line-height: 24px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.detailBanlance {
+    font-family: 微软雅黑;
+    float: left;
+    width: 100%;
+    line-height: 40px;
+    font-size: 24px;
+    color: #ff8a00;
+    font-weight: bold;
+    text-align: center;
+}
