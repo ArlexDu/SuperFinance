@@ -1,4 +1,6 @@
 ﻿var currentbankName;
+var page;
+var num = 0;
 //准备信息的载体
 function setInfo() {
     $("#info").css({
@@ -9,11 +11,22 @@ function setInfo() {
         "left": windows_width
     });
     arrowTop = (windows_height - $("#arrowLDiv").outerHeight() * 2) / 2;
-    for (var i = 0; i < 14; i++) {
+    //需要获得当前银行的总的产品数量
+    num = 28;
+    for (var i = 0; i < num; i++) {
         setProduct(i);
     }
     var stepx = windows_width / (time / 0.03);
     setTimeout(function () { changePage(0, -stepx) }, 500);
+    productPage = true;
+}
+
+//删除前一个银行的信息
+function removeProduction(){
+    for(var i= 0;i<num;i++){
+        $(("#" + i)).remove();
+    //    console.log("remove #"+i);
+    }
 }
 
 //加入农行产品的信息
@@ -24,8 +37,8 @@ function setProduct(number) {
     detial.addClass("detailProduction");
     // console.log("top is " + ((parseInt(number / 7) * (184 + 70)) + (arrowTop - 184) - (windows_height * 0.4 - 160)));
     detial.css({
-        "top": ((parseInt(number / 7) * (184 + 70)) + (arrowTop - 184) - (windows_height * 0.4 - 160)),
-        "left": ((number % 7) * 200)
+        "top": ((parseInt(number % 2) * (184 + 70)) + (arrowTop - 184) - (windows_height * 0.4 - 160)),
+        "left": (parseInt(number / 2) * 200)
     });
     //理财产品的系列名称
     var detialTitle = $("<div>安心得利如意</div>");
@@ -80,7 +93,7 @@ function changePage(change, stepx) {
 //初始化产品信息列表
 function showinformation(id) {
     if ($("#show").length!=0) {
-        console.log("remove");
+//        console.log("remove");
         $("#show").remove();
     } 
         console.log("build");

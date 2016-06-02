@@ -5,10 +5,11 @@ var detial = false;//第一次点击要下落按钮区域
 var radius_change = 5;//每一帧半径的变化
 var icon_radius = 40; //每一帧图标大小的变化
 var icon_stop = false;//过渡按钮组旋转动画停止
-var banks = ["#abc_bank", "#boc_bank", "#ccb_bank", "#icbc_bank"];
+var banks = ["#ccb_bank", "#boc_bank", "#icbc_bank", "#abc_bank"];
 var currentbank;//当前显示的银行的编号
 var changebank = false;
 var changeproduct = false;
+var productPage = false;
 $(function () {
     //点击银行图标进入不同的产品界面
     $(".icons").each(function () {
@@ -21,7 +22,11 @@ $(function () {
             if (detial) {//是否还是主页状态
                 var step = 60 / (time / 0.06);
                 changeArrow(-step, 0);
-                bankToproduct();
+                if (productPage) {//银行产品界面之间的转换
+                    removeProduction();
+                } else {//银行信息界面到产品界面的转换
+                    bankToproduct();
+                }
                 setInfo();
                 setTimeout(function () { showArrow(); }, 300);
             } else {
@@ -29,6 +34,7 @@ $(function () {
                 moveOtherBank("ALL");
                 changestatus();
                 setInfo();
+
             }
         });
     });
@@ -37,6 +43,7 @@ $(function () {
         if (detial) {
             window.location = "http://localhost:62754/";
             detial = false;
+            productPage = false;
         }
     })
     //点击银行建筑图片事件
@@ -498,17 +505,22 @@ function changebankinfoanimation(Pic,Info,stepxP,stepxI,change) {
             stepxI = stepxI / (1.1) < -1 ? stepxI / (1.1) : -1;
         }
     }
-    console.log("change is " + change);
-    console.log("stepx is " + stepx);
+    //console.log("change is " + change);
+    //console.log("stepx is " + stepx);
     if (Math.abs(change) >= windows_width) {
         //console.log("change is " + change);
         //console.log("windows_width is "+windows_width);
-    } else if (Math.abs(change + stepx) >= windows_width) {//最后一帧保证位置
+    } else if (Math.abs(change + stepxP) >= windows_width) {//最后一帧保证位置
         //   console.log("last frame");
-        if (stepx > 0) {
-              stepx = windows_width - change;
+        if (stepxP > 0) {
+              stepxP = windows_width - change;
         } else {
-              stepx = (windows_width - Math.abs(change))*(-1);
+              stepxP = (windows_width - Math.abs(change))*(-1);
+        }
+        if (stepxI > 0) {
+            stepxI = windows_width - change;
+        } else {
+            stepxI = (windows_width - Math.abs(change)) * (-1);
         }
         setTimeout("changebankinfoanimation(\"" + Pic + "\",\"" + Info + "\"," + stepxP+","+stepxI + "," + change + ")", 30);
     } else {
