@@ -12,7 +12,7 @@ function setInfo() {
     });
     arrowTop = (windows_height - $("#arrowLDiv").outerHeight() * 2) / 2;
     //需要获得当前银行的总的产品数量
-    num = 28;
+    num = 28; 
     for (var i = 0; i < num; i++) {
         setProduct(i);
     }

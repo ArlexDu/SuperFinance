@@ -205,8 +205,8 @@ body {
     background-image: url("../image/abc.png");
 }
 
-#boc{
-    background-image: url("../image/boc.png");
+#bocom{
+    background-image: url("../image/bocom.png");
 }
 
 #ccb{
@@ -246,7 +246,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         left:180px;
         opacity:1;
     }
@@ -258,7 +258,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         left:180px;
         opacity:1;
     }
@@ -270,7 +270,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         left:180px;
         opacity:1;
     }
@@ -282,7 +282,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         left:180px;
         opacity:1;
     }
@@ -304,71 +304,71 @@ body {
 #abc_bank:hover{
     background-image:url("../image/abc_building_after.png");
 }
-@keyframes boc{
+@keyframes bocom{
     from {
         bottom:-200px;
         left:-200px;
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         left:180px;
         opacity:1;
     }
 }
-@-webkit-keyframes boc{
+@-webkit-keyframes bocom{
     from {
         bottom:-200px;
         left:-200px;
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         left:180px;
         opacity:1;
     }
 }
-@-moz-keyframes boc{
+@-moz-keyframes bocom{
     from {
         bottom:-200px;
         left:-200px;
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         left:180px;
         opacity:1;
     }
 }
-@-o-keyframes boc{
+@-o-keyframes bocom{
     from {
         bottom:-200px;
         left:-200px;
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         left:180px;
         opacity:1;
     }
 }
 
-#boc_building{
-     background-image: url("../image/boc_building_before.png");
-     animation:boc 0.7s 4s ease-in-out forwards;
-    -moz-animation:boc 0.7s 4s ease-in-out forwards;
-    -webkit-animation:boc 0.7s 4s ease-in-out forwards;
-    -o-animation:boc 0.7s 4s ease-in-out forwards;
+#bocom_building{
+     background-image: url("../image/bocom_building_before.png");
+     animation:bocom 0.7s 4s ease-in-out forwards;
+    -moz-animation:bocom 0.7s 4s ease-in-out forwards;
+    -webkit-animation:bocom 0.7s 4s ease-in-out forwards;
+    -o-animation:bocom 0.7s 4s ease-in-out forwards;
 }
 
-#boc_bank{
+#bocom_bank{
     opacity:0;
     cursor:auto;
-    background-image: url("../image/boc_building_before.png");
+    background-image: url("../image/bocom_building_before.png");
 }
 
-#boc_bank:hover{
-    background-image:url("../image/boc_building_after.png");
+#bocom_bank:hover{
+    background-image:url("../image/bocom_building_after.png");
 }
 
 
@@ -379,7 +379,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         right:180px;
         opacity:1;
     }
@@ -391,7 +391,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         right:180px;
         opacity:1;
     }
@@ -403,7 +403,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         right:180px;
         opacity:1;
     }
@@ -415,7 +415,7 @@ body {
         opacity:0;
     }
     to{
-        top:100px;
+        top:80px;
         right:180px;
         opacity:1;
     }
@@ -446,7 +446,7 @@ body {
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         right:180px;
         opacity:1;
     }
@@ -458,7 +458,7 @@ body {
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         right:180px;
         opacity:1;
     }
@@ -470,7 +470,7 @@ body {
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         right:180px;
         opacity:1;
     }
@@ -482,7 +482,7 @@ body {
         opacity:0;
     }
     to{
-        bottom:100px;
+        bottom:150px;
         right:180px;
         opacity:1;
     }
@@ -515,6 +515,7 @@ body {
      position:absolute;
      background-size: contain;
      background-repeat:no-repeat;
+     background-position:bottom;
      cursor:pointer;
 }
 
@@ -534,8 +535,8 @@ body {
     background-image:url("../image/abc_info.png");
 }
 
-#boc_info{
-    background-image:url("../image/boc_info.png");
+#bocom_info{
+    background-image:url("../image/bocom_info.png");
 }
 
 #ccb_info{
@@ -563,11 +564,11 @@ body {
     background-image:url("../image/goto_abc_after.png");
 }
 
-#goto_boc{
-    background-image:url("../image/goto_boc_before.png");
+#goto_bocom{
+    background-image:url("../image/goto_bocom_before.png");
 }
-#goto_boc:hover{
-    background-image:url("../image/goto_boc_after.png");
+#goto_bocom:hover{
+    background-image:url("../image/goto_bocom_after.png");
 }
 
 #goto_ccb{

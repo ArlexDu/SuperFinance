@@ -5,7 +5,7 @@ var detial = false;//第一次点击要下落按钮区域
 var radius_change = 5;//每一帧半径的变化
 var icon_radius = 40; //每一帧图标大小的变化
 var icon_stop = false;//过渡按钮组旋转动画停止
-var banks = ["#ccb_bank", "#boc_bank", "#icbc_bank", "#abc_bank"];
+var banks = ["#ccb_bank", "#bocom_bank", "#icbc_bank", "#abc_bank"];
 var currentbank;//当前显示的银行的编号
 var changebank = false;
 var changeproduct = false;
@@ -64,8 +64,8 @@ $(function () {
             var id = $(this).attr("id");
             if (id == "goto_abc") {
                 window.open("http://www.abchina.com/cn/");
-            } else if (id == "goto_boc") {
-                window.open("http://www.boc.cn/");
+            } else if (id == "goto_bocom") {
+                window.open("http://www.bankcomm.com/BankCommSite/shtml/zonghang/cn/2971/list.shtml");
             } else if (id == "goto_ccb") {
                 window.open("http://www.ccb.com/cn/home/indexv3.html");
             } else if (id == "goto_icbc") {
@@ -151,7 +151,7 @@ function changeypostion() {
             "height": newwidth + "px"
         });
         iconSize(abc);
-        iconSize(boc);
+        iconSize(bocom);
         iconSize(ccb);
         iconSize(icbc);
     }
@@ -198,9 +198,9 @@ function changeicons() {
     //icbc的位置变化
     var icbc_step = (angles[1] - 90) / (time / 0.03);
     changeIcon(0, angles[1], 90, icbc_step, "icbc");
-    //boc的位置变化
-    var boc_step = (angles[2] - 0) / (time / 0.03);
-    changeIcon(0, angles[2], 0, boc_step, "boc");
+    //bocom的位置变化
+    var bocom_step = (angles[2] - 0) / (time / 0.03);
+    changeIcon(0, angles[2], 0, bocom_step, "bocom");
     //ccb的位置变化
     var ccb_step = (angles[3] + 90) / (time / 0.03);
     //console.log("target ccb is " + angles[3]);
@@ -232,16 +232,16 @@ function targetangle() {
     var abc_angle = parseInt(radians2degree(Math.atan(-40 / radius))) + 360;
  //   console.log("angle is " + parseInt(radians2degree(Math.atan(-40 / radius))));
     var icbc_angle = 315;
-    var boc_angle = 225;
+    var bocom_angle = 225;
     var ccb_angle = 180 - parseInt(radians2degree(Math.atan(-40 / radius)));
-    return [abc_angle, icbc_angle,boc_angle,ccb_angle];
+    return [abc_angle, icbc_angle,bocom_angle,ccb_angle];
 }
 
 //获取银行的介绍信息
 function getBankDetialInfo(id) {
     var bankx = $(id).css("left").split("px")[0] * 1.0;
     var banky = $(id).css("top").split("px")[0] * 1.0;
-    var targety = (windows_height - bank_height * 1.5) / 2;
+    var targety = (windows_height - bank_height * 1.5) / 2 - 50;
     //console.log("windows_height : " + windows_height);
     //console.log("bank_height : " + bank_height);
     var targetx;
@@ -339,7 +339,7 @@ function moveOthers(id, stepy,targety) {
 
 //显示银行的具体信息
 function bankInfo(id,targetx,targety,width,height,isRight) {
-    var top = targety - 50;
+    var top = targety;
     var left;
     if (isRight) {
         //console.log("on the left")

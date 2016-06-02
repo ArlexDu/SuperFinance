@@ -13,7 +13,7 @@ var arrowTop;//两端箭头的top
 $(document).ready(function () {
     //  console.log("execute begin");
     abc = $("#abc");
-    boc = $("#boc");
+    bocom = $("#bocom");
     ccb = $("#ccb");
     icbc = $("#icbc");
     init();
@@ -56,7 +56,7 @@ function setbank() {
         "left": bank_zoom/2 - radius -40 ,
         "top": bank_zoom / 2 -40
     });
-    boc.css({
+    bocom.css({
         "position": "absolute",
         "left": bank_zoom/2 +radius - 40,
         "top": bank_zoom/2 - 40
@@ -73,7 +73,7 @@ function setbank() {
     });
     setTimeout(function () { abc.fadeIn(700) }, 4000);
     setTimeout(function () { ccb.fadeIn(700) }, 4300);
-    setTimeout(function () { boc.fadeIn(700) }, 4600);
+    setTimeout(function () { bocom.fadeIn(700) }, 4600);
     setTimeout(function () { icbc.fadeIn(700) }, 4900);
     setTimeout("removeBuilding()", 5000);
 }
@@ -87,7 +87,7 @@ function degree2radians(degree) {
 }
 /*
 abc是left top 定位
-boc是left bottom 定位
+bocom是left bottom 定位
 ccb是top right 定位
 icbc是 bottom right 定位
 */
@@ -107,15 +107,15 @@ function removeBuilding() {
     $("#abc_building").css({
         "display":"none"
     });
-    bankx = $("#boc_building").css("left").split("px")[0] * 1.0;
-    banky = windows_height - $("#boc_building").css("bottom").split("px")[0] * 1.0 - bank_height;
-    $("#boc_bank").css({
+    bankx = $("#bocom_building").css("left").split("px")[0] * 1.0;
+    banky = windows_height - $("#bocom_building").css("bottom").split("px")[0] * 1.0 - bank_height;
+    $("#bocom_bank").css({
         "top": banky,
         "left": bankx,
         "opacity": "1",
          "cursor":"pointer"
     });
-    $("#boc_building").css({
+    $("#bocom_building").css({
         "display": "none"
     });
     bankx = windows_width - $("#ccb_building").css("right").split("px")[0] * 1.0 - bank_width;
