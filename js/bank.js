@@ -23,6 +23,10 @@ $(function () {
                 var step = 60 / (time / 0.06);
                 changeArrow(-step, 0);
                 if (productPage) {//银行产品界面之间的转换
+                    if ($("#show").length != 0) {
+                        //        console.log("remove");
+                        $("#show").remove();
+                    }
                     removeProduction();
                 } else {//银行信息界面到产品界面的转换
                     bankToproduct();
