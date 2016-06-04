@@ -15,7 +15,9 @@ $(function () {
     $(".icons").each(function () {
         $(this).click(function () {
             var id = $(this).attr("id");
-  //          console.log("id is "+id);
+            //          console.log("id is "+id);
+            var ajaxid = eval("banktoid." + id);
+      //      console.log("ajaxid is "+ajaxid);
             changebank = false;
             changeproduct = true;
             currentbankName = id;//abc
@@ -31,13 +33,11 @@ $(function () {
                 } else {//银行信息界面到产品界面的转换
                     bankToproduct();
                 }
-                setInfo();
-                setTimeout(function () { showArrow(); }, 300);
+                GetList(ajaxid);
             } else {
-                showArrow();
                 moveOtherBank("ALL");
                 changestatus();
-                setInfo();
+                GetList(ajaxid);
 
             }
         });
@@ -45,7 +45,7 @@ $(function () {
     //点击“华”刷新主页
     $("#logo").click(function () {
         if (detial) {
-            window.location = "http://localhost:62754/";
+            location.reload();
             detial = false;
             productPage = false;
         }
@@ -80,11 +80,9 @@ $(function () {
 
     $(document).on("click", ".detailProduction", function (e) {
         var id = $(this).attr("id");
-        //console.log("id is " + id);
-        showinformation(id);
-        showBackArrow(id);
-        var step = 60 / (time / 0.06);
-        changeArrow(-step,0);
+      //  console.log("id is " + id);
+        var ID = $(("#"+id)).children("#ID").text();
+        GetDetail(id,ID);
     });
 
     $("#arrowR").click(function () {
@@ -95,6 +93,14 @@ $(function () {
         if (changeproduct) {//转换理财产品
             var stepx = windows_width / (time / 0.03);
             changePage(0,-stepx);
+            currentpage ++;
+            if(currentpage == 2){
+            	showSingleArrow("#arrowLDiv");
+            }
+            if(currentpage == wholepages){
+            	step = 60 / (time / 0.03);
+                changeSingleArrow("#arrowRDiv",step, 0);
+            }
         }
        
     });
@@ -106,6 +112,15 @@ $(function () {
         if (changeproduct) {
             var stepx = windows_width / (time / 0.03);
             changePage(0, stepx);
+            currentpage --;
+            if(currentpage == 1){
+            	step = -60 / (time / 0.03);
+                changeSingleArrow("#arrowLDiv",step, 0);
+            }
+            if(currentpage == (wholepages - 1)){
+            	//console.log("show right");
+            	showSingleArrow("#arrowRDiv");
+            }
         }
     });
     //由具体信息界面返回到产品列表界面
@@ -118,7 +133,16 @@ $(function () {
             step = -windows_height / (time / 0.03);
         }
         changeProductInfomation("#info", "#information", step, 0);
-        showArrow();
+        console.log("currentpage is "+currentpage);
+        if(wholepages<=1){
+        	
+        }else if(currentpage == wholepages){
+        	showSingleArrow("#arrowLDiv")
+        }else if(currentpage == 1){
+        	showSingleArrow("#arrowRDiv")
+        }else{
+        	showArrow();	
+        }
         var step = 60 / (time / 0.06);
         changeBackArrow(-step, 0);
     });
@@ -261,11 +285,11 @@ function getBankDetialInfo(id) {
     stepy = (targety - banky) / (time / 0.03);
     stepw = (bank_width * 0.5) / (time / 0.03);
     steph = (bank_height * 0.5) / (time / 0.03);
-    console.log("stepx : " + stepx);
-    console.log("stepy : " + stepy);
+ //   console.log("stepx : " + stepx);
+ //   console.log("stepy : " + stepy);
     //console.log("targetw : " + bank_height*1.5);
     //console.log("targeth : " + bank_width*1.5); //#abc_bank
-    var image = "url(\"../image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
+    var image = "url(\"image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
   //  console.log("image is " + image);
     $(id).css({
         "background-image": image,
@@ -277,9 +301,9 @@ function getBankDetialInfo(id) {
     var info = id.split("_")[0] + "_info";
     //console.log("info is " + info);
     bankInfo(info, targetx, targety, bank_width * 1.5, bank_height * 1.5, isRight);
-    var goto = "#goto_" + id.split("#")[1].split("_")[0];
-    console.log("goto is " + goto);
-    gotoBank(goto);
+    var go = "#goto_" + id.split("#")[1].split("_")[0];
+ //   console.log("goto is " + go);
+    gotoBank(go);
     showArrow();
 }
 
@@ -358,7 +382,6 @@ function bankInfo(id,targetx,targety,width,height,isRight) {
         "position": "absolute",
         "top": top + "px",
         "left": left + "px"
-
     });
     setTimeout(function(){$(id).fadeIn(400)},200);
 }
@@ -439,7 +462,7 @@ function initPosition(id, isnext) {
     var topI = $(currentinfo).css("top").split("px")[0] * 1.0;
     var leftI = $(currentinfo).css("left").split("px")[0] * 1.0;
     var info = id.split("_")[0] + "_info";
-    var image = "url(\"../image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
+    var image = "url(\"image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
     if (isnext) {//如果是下一个的话，则初始位置定在左边
         $(id).css({
             "top":topP,

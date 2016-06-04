@@ -35,7 +35,7 @@
     width: 100%;
     z-index:3;
     line-height: 24px;
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
 }
 
@@ -54,16 +54,19 @@
 .information_list {
     border: 0;
     border-collapse: collapse;
-    text-align: left;
+    text-align: center;
     width: 100%;
     z-index:1;
 }
 #information {
     float: left;
-    width: 930px;
+    width: 600px;
     height:210px;
     margin: 0 15px;
     display: inline;
     position:absolute;
     z-index:1;
+}
+.th{
+	min-width: 100px;
 }
