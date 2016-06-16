@@ -10,6 +10,7 @@ var currentbank;//当前显示的银行的编号
 var changebank = false;
 var changeproduct = false;
 var productPage = false;
+var planPage = false;
 $(function () {
     //点击银行图标进入不同的产品界面
     $(".icons").each(function () {
@@ -24,12 +25,20 @@ $(function () {
             if (detial) {//是否还是主页状态
                 var step = 60 / (time / 0.06);
                 changeArrow(-step, 0);
-                if (productPage) {//银行产品界面之间的转换
+                if (productPage || planPage) {//银行产品界面之间的转换
                     if ($("#show").length != 0) {
                         //        console.log("remove");
                         $("#show").remove();
                     }
                     removeProduction();
+                    if($("#benefit").length!=0){
+                    	$("#benefit").attr("id","oldbenefit");
+                    	$("#oldbenefit").addClass("benefit-moveout").on("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",function(){
+                        	benefitdiv.off("webkitTransitionEnd otransitionend transitionend");
+                        	benefitdiv.removeClass("benefit-moveout");
+                        	$("#oldbenefit").remove();
+                        });
+                    }
                 } else {//银行信息界面到产品界面的转换
                     bankToproduct();
                 }

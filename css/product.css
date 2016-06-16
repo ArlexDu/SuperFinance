@@ -50,6 +50,18 @@
     text-align: center;
     z-index:3;
 }
+
+.income {
+    font-family: 微软雅黑;
+    float: left;
+    width: wrap;
+    line-height: 40px;
+    font-size: 24px;
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+    z-index:3;
+}
 /*产品的具体信息*/
 .information_list {
     border: 0;
@@ -69,4 +81,127 @@
 }
 .th{
 	min-width: 100px;
+}
+
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+/*鱼架子信息的填写*/
+@keyframes bigger
+{
+0%{
+    -webkit-transform: scale(0.3.0.3);
+    opacity:0;
+}
+100%{
+    transform: scale(1,1);
+    opacity:1;
+}
+}
+
+@-moz-keyframes bigger /* Firefox */
+{
+0%{
+    transform: scale(0.3.0.3);
+    opacity:0;
+}
+100%{
+    transform: scale(1,1);
+    opacity:1;
+}
+}
+
+@-webkit-keyframes bigger /* Safari 和 Chrome */
+{
+from{
+    transform: scale(0.3.0.3);
+    opacity:1;
+}
+to{
+    transform: scale(1,1);
+    opacity:0;
+}
+}
+@-o-keyframes bigger /* Opera */
+{
+0%{
+    transform: scale(0.3.0.3);
+    opacity:0;
+}
+100%{
+    transform: scale(1,1);
+    opacity:1;
+}
+}
+.scaledialog{
+    position:absolute;
+    background-color:#f3f6fa;
+    border-radius:6px;
+    z-index:1000;
+    padding:25px 20px;
+    animation: bigger 1s ease-in-out;
+    -moz-animation: bigger 1s ease-in-out;	/* Firefox */
+    -webkit-animation: bigger 1s ease-in-out;	/* Safari 和 Chrome */
+    -o-animation: bigger 1s ease-in-out;	/* Opera */
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/*button的样式*/
+.button {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+/* blue */
+.blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }

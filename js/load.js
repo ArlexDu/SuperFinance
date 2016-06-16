@@ -37,6 +37,15 @@ function init() {
         "top": (-windows_height - $("#information").outerHeight()) / 2,
     });
     setbank();
+    $("#plan").on("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",function(){
+    	$("#plan").off("webkitTransitionEnd otransitionend transitionend");
+    	$("#plan").removeClass("plan-movein");
+    	$("#plan").addClass("plan-touch");
+    	$("#plan").click(function(){
+    		setdialogbackground();
+    		setdialog();
+    	});
+    });
 }
 //居中响应的div
 function center(id) {
