@@ -69,7 +69,8 @@ function GetPlan(url) {
         dataType: "json",
         async:false,
         success: function (data) {
-        	    setPlanInfo(data);
+                setPlanInfo(data);
+                wholepages = Math.ceil(data.plan_details.length * 1.0 / (windows_width / 200 * 2));
 	            if(wholepages > 1){
 	            	  setTimeout(function () { 
    	            	var div ="#arrowRDiv";
