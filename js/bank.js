@@ -34,8 +34,8 @@ $(function () {
                     if($("#benefit").length!=0){
                     	$("#benefit").attr("id","oldbenefit");
                     	$("#oldbenefit").addClass("benefit-moveout").on("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",function(){
-                        	benefitdiv.off("webkitTransitionEnd otransitionend transitionend");
-                        	benefitdiv.removeClass("benefit-moveout");
+                    	    $("#oldbenefit").off("webkitTransitionEnd otransitionend transitionend");
+                    	    $("#oldbenefit").removeClass("benefit-moveout");
                         	$("#oldbenefit").remove();
                         });
                     }
